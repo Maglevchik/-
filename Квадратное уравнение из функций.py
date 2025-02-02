@@ -1,18 +1,22 @@
 import math
 def discr(a,b,c):
     return b ** 2 - 4 * a * c
-def solf(a,b,c,discr):
-    print(f'Формула Дискриминанта:\nD = b^2 - 4ac    \nДискриминант = {b**2} - 4({a})({c}) = {discr(a, b, c)}')
-    if discr(a, b, c) > 0:
-        x1, x2 = (-b - math.sqrt(discr(a, b, c))) / (2 * a), (-b + math.sqrt(discr(a, b, c))) / (2 * a)
-        print(f'Он имеет 2 корня    \nx1 = (-({b}) - √D) / 2 * ({a})    \nx2 = (-({b}) + √D) / 2 * ({a})    \nx1 = {x1}\nx2 = {x2}')
-    elif discr(a,b,c) == 0:
+def solf(a, b, c):
+    d = discr(a, b, c)
+    print(f'Формула Дискриминанта:\nD = b^2 - 4ac\nДискриминант = {b ** 2} - 4({a})({c}) = {d}')
+
+    if d > 0:
+        x1 = (-b - math.sqrt(d)) / (2 * a)
+        x2 = (-b + math.sqrt(d)) / (2 * a)
+        print(f'Два корня:\nx1 = {x1}\nx2 = {x2}')
+    elif d == 0:
         x = -b / (2 * a)
-        print(f'Он имеет 1 корень    \nx = -({b}) / 2 * ({a})\nx = {x}')
+        print(f'Один корень:\nx = {x}')
     else:
-        print('Он не имеет корней')
-abc = []
-task = input('Напиши индексы квадратного уравнения ax^2 + bx + c =0 {a b c} "С дробями не работаем!":')
-for ind in task.split(): abc.append(ind)
-a,b,c = int(abc[0]),int(abc[1]),int(abc[2])
-solf(a,b,c,discr)
+        print('Корней нет')
+
+abc = input('Введите коэффициенты квадратного уравнения ax^2 + bx + c = 0 (например, 1 25/49 3): ').split()
+a = float(abc[0])
+b = float(abc[1])
+c = float(abc[2])
+solf(a, b, c)
